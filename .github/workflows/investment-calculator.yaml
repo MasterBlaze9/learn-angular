@@ -1,0 +1,30 @@
+name: Investment Calculator App CI
+on:
+  push:
+    branches: [main]
+    paths:
+      - "investment-calculator/**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./investment-calculator
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: investment-calculator/package-lock.json
+      - name: Dependency Install
+        run: npm ci
+
+      - name: Run Tests
+        run: npx ng test --watch=false --browsers=ChromeHeadless
+
+      - name: Production build
+        run: npx ng build --configuration production
