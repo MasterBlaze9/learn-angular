@@ -18,10 +18,10 @@ export class UserInput {
 
   onSubmit() {
     this.investmentService.calculateInvestmentResults({
-      initialInvestment: +this.initialInvestment,
-      annualInvestment: +this.annualInvestment,
-      expectedReturn: +this.expectedReturn,
-      duration: +this.duration,
+      initialInvestment: +this.initialInvestment(),
+      annualInvestment: +this.annualInvestment(),
+      expectedReturn: +this.expectedReturn(),
+      duration: +this.duration(),
     });
     this.initialInvestment.set('0');
     this.annualInvestment.set('0');
